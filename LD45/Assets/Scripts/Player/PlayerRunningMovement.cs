@@ -63,6 +63,7 @@ public class PlayerRunningMovement : MonoBehaviour
     void CreateMovementVector()
     {
         movementVector = new GameObject("MovementVector").transform;
+        movementVector.rotation = transform.rotation;
     }
 
     private void Awake()
