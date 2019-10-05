@@ -44,16 +44,19 @@ public class PlayerRunningMovement : MonoBehaviour
 
     void ApplyVelocity()
     {
-        Vector3 velocityVect = movementVector.forward * Mathf.Clamp(runningTime / maxClamp, 0, 5) * acceleration;
+        Vector3 velocityVect = movementVector.forward * Mathf.Clamp(runningTime / maxClamp, 0, 5) * acceleration * Input.GetAxisRaw("Vertical");
 
-        if (velocityVect.magnitude < maxSpeedMagnitude && movement.y != 0)
+        if (velocityVect.magnitude < maxSpeedMagnitude && movement.y > 0)
         {
             rb.velocity += velocityVect;
-            Debug.Log(rb.velocity.magnitude + ", ");
         }
-        else if (movement.y != 0)
+        else if (movement.y > 0)
         {
             rb.velocity = movementVector.forward * MaxRbSpeed;
+        }
+        else if(movement.y < 0)
+        {
+            rb.velocity = -movementVector.forward * MaxRbSpeed / 5;
         }
     }
 
