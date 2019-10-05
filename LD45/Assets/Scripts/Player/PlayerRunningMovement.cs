@@ -10,7 +10,7 @@ public class PlayerRunningMovement : MonoBehaviour
     [SerializeField] float maxBackwardsSpeed = 16;
     [SerializeField] float maxClamp = 10;
 
-    float maxRbSpeed;
+    [HideInInspector] public float MaxRbSpeed;
 
     Transform movementVector;
 
@@ -24,10 +24,10 @@ public class PlayerRunningMovement : MonoBehaviour
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (movement != Vector2.zero)
+        if (movement.y != 0)
             runningTime += Time.deltaTime;
         else
-            runningTime = 0;
+            runningTime = Mathf.Clamp01(runningTime - Time.deltaTime);
     }
 
     void RotateMovementVector()
@@ -53,7 +53,7 @@ public class PlayerRunningMovement : MonoBehaviour
         }
         else if (movement.y != 0)
         {
-            rb.velocity = movementVector.forward * maxRbSpeed;
+            rb.velocity = movementVector.forward * MaxRbSpeed;
         }
     }
 
@@ -66,7 +66,7 @@ public class PlayerRunningMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        maxRbSpeed = maxSpeedMagnitude * 40;
+        MaxRbSpeed = maxSpeedMagnitude * 40;
 
         CreateMovementVector();
     }
