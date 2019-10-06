@@ -10,7 +10,7 @@ public class PlayerRunningMovement : MonoBehaviour
     [SerializeField] float maxBackwardsSpeed = 16;
     [SerializeField] float maxClamp = 10;
 
-    [SerializeField] float boostSpeedMultiplier = 1.5f;
+    float boostSpeedMultiplier = 2;
 
     [HideInInspector] public float MaxRbSpeed;
 
@@ -61,7 +61,11 @@ public class PlayerRunningMovement : MonoBehaviour
         }
         else if (movement.y > 0)
         {
-            rb.velocity = movementVector.forward * MaxRbSpeed;
+            velocityVect = movementVector.forward * MaxRbSpeed;
+            if (powerupController.BoostActive)
+                velocityVect *= boostSpeedMultiplier;
+
+            rb.velocity = velocityVect;
         }
         else if(movement.y < 0)
         {

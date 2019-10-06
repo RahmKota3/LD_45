@@ -23,14 +23,19 @@ public class PickupTrigger : MonoBehaviour
 
     IEnumerator RespawnCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5);
 
         ActivateObject();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<PowerupController>().RandomizePowerup();
+        PowerupController pc = other.gameObject.GetComponent<PowerupController>();
+
+        if (pc == null)
+            return;
+
+        pc.RandomizePowerup();
         StartCoroutine(RespawnCoroutine());
         DeactivateObject();
     }

@@ -11,7 +11,7 @@ public class AI_Running : MonoBehaviour
 
     float normalSpeed;
     float boostedSpeed;
-    float boostMultiplier = 1.5f;
+    float boostMultiplier = 2;
 
     List<Vector3> checkpointsLeft = new List<Vector3>();
 
