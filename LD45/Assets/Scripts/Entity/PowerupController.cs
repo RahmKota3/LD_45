@@ -6,7 +6,8 @@ public enum Powerups { None, Mine, Boost, Bazooka, Shield }
 
 public class PowerupController : MonoBehaviour
 {
-    Powerups currentPowerup = Powerups.None;
+    //Powerups currentPowerup = Powerups.None;
+    Powerups currentPowerup = Powerups.Bazooka;
 
     [SerializeField] GameObject minePrefab;
     [SerializeField] GameObject boostObject;
@@ -18,8 +19,9 @@ public class PowerupController : MonoBehaviour
 
     public bool ShieldActive = false;
     public bool BoostActive = false;
-
-    float powerupTimer = 0;
+    
+    float[] powerupTimers = new float[5];
+    float powerupDuration = 3;
     
     public void RandomizePowerup()
     {
@@ -41,56 +43,78 @@ public class PowerupController : MonoBehaviour
             case Powerups.Boost:
                 boostObject.SetActive(true);
                 BoostActive = true;
+                powerupTimers[(int)currentPowerup] = powerupDuration;
                 break;
             case Powerups.Bazooka:
-                Instantiate(rocketPrefab, rocketLaunchPoint.position, transform.rotation);
+                GameObject g =Instantiate(rocketPrefab, rocketLaunchPoint.position, transform.rotation);
+
+                if (BoostActive)
+                    g.GetComponent<Rigidbody>().velocity *= 2;
+                
                 currentPowerup = Powerups.None;
                 break;
             case Powerups.Shield:
                 shieldObject.SetActive(true);
                 ShieldActive = true;
+                powerupTimers[(int)currentPowerup] = powerupDuration;
                 break;
         }
     }
 
-    void DisableActivePowerups()
+    void DisableActivePowerups(Powerups pow)
     {
         currentPowerup = Powerups.None;
 
-        BoostActive = false;
-        ShieldActive = false;
-
-        shieldObject.SetActive(false);
-        boostObject.SetActive(false);
+        switch (pow)
+        {
+            case Powerups.Boost:
+                BoostActive = false;
+                boostObject.SetActive(false);
+                break;
+            case Powerups.Shield:
+                ShieldActive = false;
+                shieldObject.SetActive(false);
+                break;
+        }
     }
 
     void GetPowerupInput()
     {
-        AI_PowerupUse powerupInput1 = GetComponent<AI_PowerupUse>();
-
-        if(powerupInput1 != null)
+        if(gameObject.tag != "Player")
         {
-            powerupInput1.OnPowerupUse += ActivatePowerup;
+            GetComponent<AI_PowerupUse>().OnPowerupUse += ActivatePowerup;
+        }
+        else
+        {
+            InputManager.Instance.OnPowerupButtonPressed += ActivatePowerup;
         }
     }
 
     private void Awake()
     {
-        
+        GetPowerupInput();
     }
 
     private void Update()
     {
-        if (powerupTimer > 0)
+        for (int i = 1; i < powerupTimers.Length; i++)
         {
-            powerupTimer -= Time.deltaTime;
-
-            if (powerupTimer <= 0)
+            if (powerupTimers[i] > 0)
             {
-                DisableActivePowerups();
+                powerupTimers[i] -= Time.deltaTime;
+
+                if (powerupTimers[i] <= 0)
+                {
+                    DisableActivePowerups((Powerups)i);
+                }
             }
+            else
+                powerupTimers[i] = 0;
         }
-        else
-            powerupTimer = 0;
+
+        if (Input.GetKeyDown(KeyCode.E))
+            currentPowerup = Powerups.Bazooka;
+        if (Input.GetKeyDown(KeyCode.Q))
+            currentPowerup = Powerups.Boost;
     }
 }

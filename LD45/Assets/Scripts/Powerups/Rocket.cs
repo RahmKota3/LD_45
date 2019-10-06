@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField] float velocity = 30;
+    public float Velocity = 18;
     [SerializeField] float rotationSpeed = 0.5f;
 
     Transform target;
@@ -31,7 +31,7 @@ public class Rocket : MonoBehaviour
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         }
 
-        rb.velocity = transform.forward * velocity;
+        rb.velocity = transform.forward * Velocity;
     }
 
     void FindTarget()
@@ -60,10 +60,10 @@ public class Rocket : MonoBehaviour
     private void Awake()
     {
         FindTarget();
-
+        
         rb = GetComponent<Rigidbody>();
         
-        rb.velocity = transform.forward * velocity;
+        rb.velocity = transform.forward * Velocity;
     }
 
     private void FixedUpdate()
