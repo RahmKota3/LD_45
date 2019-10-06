@@ -19,6 +19,10 @@ public class Rocket : MonoBehaviour
         if (target == null)
             return;
 
+        angle = Vector3.Angle(target.transform.forward, (target.transform.position - transform.position).normalized);
+        if (angle > 80 && angle <= 90)
+            lostTarget = true;
+
         if (lostTarget == false)
         {
             Vector3 targetVector = (target.position - transform.position).normalized;
@@ -28,10 +32,6 @@ public class Rocket : MonoBehaviour
         }
 
         rb.velocity = transform.forward * velocity;
-
-        angle = Vector3.Angle(target.transform.forward, (target.transform.position - transform.position).normalized);
-        if (angle > 80 && angle <= 90)
-            lostTarget = true;
     }
 
     void FindTarget()
@@ -73,6 +73,9 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Goal")
+            return;
+
         if (other.GetComponent<EntityStats>() != null)
         {
 
