@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AI_Running : MonoBehaviour
 {
     NavMeshAgent agent;
+    EntityStats stats;
 
     List<Vector3> checkpointsLeft = new List<Vector3>();
 
@@ -24,6 +25,7 @@ public class AI_Running : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        stats = GetComponent<EntityStats>();
 
         GetCheckpoints();
 
@@ -38,6 +40,11 @@ public class AI_Running : MonoBehaviour
 
     private void Update()
     {
+        if (stats.IsStunned)
+            agent.isStopped = true;
+        else
+            agent.isStopped = false;
+
         if(checkpointsLeft.Count > 0)
         {
             if(Vector3.Distance(transform.position, checkpointsLeft[0]) <= checkpointReachDistance)

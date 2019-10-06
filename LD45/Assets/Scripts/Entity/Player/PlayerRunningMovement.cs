@@ -19,6 +19,7 @@ public class PlayerRunningMovement : MonoBehaviour
     float runningTime = 0;
 
     Rigidbody rb;
+    EntityStats stats;
 
     void CheckInput()
     {
@@ -44,6 +45,9 @@ public class PlayerRunningMovement : MonoBehaviour
 
     void ApplyVelocity()
     {
+        if (stats.IsStunned == true)
+            return;
+
         Vector3 velocityVect = movementVector.forward * Mathf.Clamp(runningTime / maxClamp, 0, 5) * acceleration * Input.GetAxisRaw("Vertical");
 
         if (velocityVect.magnitude < maxSpeedMagnitude && movement.y > 0)
@@ -69,6 +73,7 @@ public class PlayerRunningMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        stats = GetComponent<EntityStats>();
 
         MaxRbSpeed = maxSpeedMagnitude * 40;
 

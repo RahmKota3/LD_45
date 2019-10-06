@@ -76,9 +76,10 @@ public class Rocket : MonoBehaviour
         if (other.gameObject.tag == "Goal")
             return;
 
-        if (other.GetComponent<EntityStats>() != null)
+        EntityStats es = other.GetComponent<EntityStats>();
+        if (es != null)
         {
-
+            es.Stun();
         }
         
         Destroy(gameObject);
