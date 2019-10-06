@@ -7,7 +7,7 @@ public class RaceManager : MonoBehaviour
 {
     public static RaceManager Instance;
 
-    [SerializeField] Transform CheckpointObj;
+    public Transform CheckpointObj;
     public int NumberOfLaps = 1;
 
     List<GameObject> podium = new List<GameObject>();
@@ -29,6 +29,12 @@ public class RaceManager : MonoBehaviour
 
     void GetCheckpoints()
     {
+        if(CheckpointObj == null)
+        {
+            Debug.Log("NO CHECKPOINT OBJECT!");
+            return;
+        }
+
         foreach (Transform child in CheckpointObj)
         {
             Checkpoints.Add(child);

@@ -10,6 +10,9 @@ public class AI_Checkpoint_Helper : MonoBehaviour
 
     void SetUpCheckpointList()
     {
+        if (RaceManager.Instance.CheckpointObj == null)
+            return;
+
         int numOfCheckpoints = RaceManager.Instance.Checkpoints.Count + 1;
 
         foreach (Transform t in RaceManager.Instance.Checkpoints)
