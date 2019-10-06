@@ -10,7 +10,7 @@ public class AI_Running : MonoBehaviour
     List<Vector3> checkpointsLeft = new List<Vector3>();
 
     [SerializeField] float checkpointReachDistance = 5;
-    
+
     void GetCheckpoints()
     {
         checkpointsLeft = AI_Checkpoint_Helper.Instance.Path;

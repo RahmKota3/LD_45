@@ -106,8 +106,9 @@ GameObject:
   - component: {fileID: 7613519529353032570}
   - component: {fileID: 7613519529353032564}
   - component: {fileID: 7613519529353032565}
+  - component: {fileID: 159897702069758037}
   m_Layer: 0
-  m_Name: AI
+  m_Name: AI_Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17bcc90361a99341b85d00e71c36b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointReachDistance: 5
 --- !u!54 &7613519529353032564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,3 +194,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &159897702069758037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7613519529353032569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146d574fc21df344bb67de676c635266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentLap: 0

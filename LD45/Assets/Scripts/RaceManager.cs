@@ -10,9 +10,22 @@ public class RaceManager : MonoBehaviour
     [SerializeField] Transform CheckpointObj;
     public int NumberOfLaps = 1;
 
+    List<GameObject> podium = new List<GameObject>();
+
     [HideInInspector] public List<Transform> Checkpoints;
 
     public Action OnMatchStart;
+
+    public void FinishedRace(GameObject entity)
+    {
+        podium.Add(entity);
+
+        if (podium.Count == 3)
+        {
+            Debug.LogError("Match won: " + podium[0]);
+            // Todo: On race finished stuff.
+        }
+    }
 
     void GetCheckpoints()
     {
