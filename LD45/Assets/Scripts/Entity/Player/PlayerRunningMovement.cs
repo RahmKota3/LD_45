@@ -10,6 +10,8 @@ public class PlayerRunningMovement : MonoBehaviour
     [SerializeField] float maxBackwardsSpeed = 16;
     [SerializeField] float maxClamp = 10;
 
+    [SerializeField] float boostSpeedMultiplier = 1.5f;
+
     [HideInInspector] public float MaxRbSpeed;
 
     Transform movementVector;
@@ -20,6 +22,7 @@ public class PlayerRunningMovement : MonoBehaviour
 
     Rigidbody rb;
     EntityStats stats;
+    PowerupController powerupController;
 
     void CheckInput()
     {
@@ -34,7 +37,6 @@ public class PlayerRunningMovement : MonoBehaviour
     void RotateMovementVector()
     {
         movementVector.position = transform.position;
-        //Debug.Log(rotationSpeed * Time.deltaTime * movement.x);
         movementVector.eulerAngles = new Vector3(0, movementVector.eulerAngles.y + rotationSpeed * Time.deltaTime * movement.x);
     }
 
@@ -49,6 +51,9 @@ public class PlayerRunningMovement : MonoBehaviour
             return;
 
         Vector3 velocityVect = movementVector.forward * Mathf.Clamp(runningTime / maxClamp, 0, 5) * acceleration * Input.GetAxisRaw("Vertical");
+
+        if (powerupController.BoostActive)
+            velocityVect *= boostSpeedMultiplier;
 
         if (velocityVect.magnitude < maxSpeedMagnitude && movement.y > 0)
         {
@@ -74,6 +79,7 @@ public class PlayerRunningMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         stats = GetComponent<EntityStats>();
+        powerupController = GetComponent<PowerupController>();
 
         MaxRbSpeed = maxSpeedMagnitude * 40;
 

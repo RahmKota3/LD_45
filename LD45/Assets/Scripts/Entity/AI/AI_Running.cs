@@ -7,6 +7,11 @@ public class AI_Running : MonoBehaviour
 {
     NavMeshAgent agent;
     EntityStats stats;
+    PowerupController powerupController;
+
+    float normalSpeed;
+    float boostedSpeed;
+    float boostMultiplier = 1.5f;
 
     List<Vector3> checkpointsLeft = new List<Vector3>();
 
@@ -26,6 +31,10 @@ public class AI_Running : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<EntityStats>();
+        powerupController = GetComponent<PowerupController>();
+
+        normalSpeed = agent.speed;
+        boostedSpeed = agent.speed * boostMultiplier;
 
         GetCheckpoints();
 
@@ -44,6 +53,11 @@ public class AI_Running : MonoBehaviour
             agent.isStopped = true;
         else
             agent.isStopped = false;
+
+        if (powerupController.BoostActive)
+            agent.speed = boostedSpeed;
+        else
+            agent.speed = normalSpeed;
 
         if(checkpointsLeft.Count > 0)
         {
