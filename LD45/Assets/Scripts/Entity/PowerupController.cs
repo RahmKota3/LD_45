@@ -27,11 +27,15 @@ public class PowerupController : MonoBehaviour
     public Action<Powerups> OnPowerupCollected;
 
     AudioSource audioSource;
+    GameObject uiPowerup;
     
     public void RandomizePowerup()
     {
         currentPowerup = (Powerups)UnityEngine.Random.Range(1, 5);
         Debug.Log(currentPowerup);
+
+        if (gameObject.tag == "Player")
+            uiPowerup.SetActive(true);
 
         OnPowerupCollected?.Invoke(currentPowerup);
         SoundManager.Instance.PlayPickupSound(audioSource);
@@ -59,6 +63,9 @@ public class PowerupController : MonoBehaviour
         }
 
         OnPowerupCollected?.Invoke(currentPowerup);
+
+        if(gameObject.tag == "Player")
+            uiPowerup.SetActive(false);
     }
 
     void UseBoost()
@@ -133,6 +140,12 @@ public class PowerupController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         GetPowerupInput();
+
+        if (gameObject.tag == "Player")
+        {
+            uiPowerup = GameObject.FindGameObjectWithTag("PowerupDisplay");
+            uiPowerup.SetActive(false);
+        }
     }
 
     private void Update()
