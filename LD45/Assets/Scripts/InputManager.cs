@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     public Action OnPowerupButtonPressed;
+    public Action OnPauseButtonPressed;
 
     private void Awake()
     {
@@ -19,5 +20,8 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Powerup"))
             OnPowerupButtonPressed?.Invoke();
+
+        if (Input.GetButtonDown("Pause"))
+            OnPauseButtonPressed?.Invoke();
     }
 }

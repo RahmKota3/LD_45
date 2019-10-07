@@ -111,10 +111,5 @@ public class PowerupController : MonoBehaviour
             else
                 powerupTimers[i] = 0;
         }
-
-        if (Input.GetKeyDown(KeyCode.E))
-            currentPowerup = Powerups.Bazooka;
-        if (Input.GetKeyDown(KeyCode.Q))
-            currentPowerup = Powerups.Boost;
     }
 }
