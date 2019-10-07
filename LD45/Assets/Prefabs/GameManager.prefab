@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 811411462691221886}
   - component: {fileID: 6487270930098882352}
   - component: {fileID: 2496859148691042755}
+  - component: {fileID: 50028607}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckpointObj: {fileID: 0}
-  NumberOfLaps: 2
+  NumberOfLaps: 1
   Checkpoints: []
+  PlayerPlace: 1
 --- !u!114 &5639319245334295533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +104,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCountdown: {fileID: 0}
+--- !u!114 &50028607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487270929322123130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35e2c2eafe9e224c9f4e6257039c1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raceOverUI: {fileID: 0}
+  raceUI: {fileID: 0}

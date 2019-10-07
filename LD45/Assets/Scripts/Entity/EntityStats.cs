@@ -8,7 +8,6 @@ public class EntityStats : MonoBehaviour
     [HideInInspector] public int CurrentLap = 0;
 
     public bool IsStunned { get; private set; }
-    bool hardStun = true;
     float stunTime = 1.5f;
     float stunTimer = 0;
 
@@ -30,13 +29,7 @@ public class EntityStats : MonoBehaviour
 
         SoundManager.Instance.PlayHitSound(audioSource);
     }
-
-    public void HardStun(bool stun)
-    {
-        IsStunned = stun;
-        hardStun = stun;
-    }
-
+    
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -48,7 +41,7 @@ public class EntityStats : MonoBehaviour
         {
             stunTimer -= Time.deltaTime;
 
-            if (stunTimer <= 0 && hardStun == false)
+            if (stunTimer <= 0)
                 IsStunned = false;
         }
         else

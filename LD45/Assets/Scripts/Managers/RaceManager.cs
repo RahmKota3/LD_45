@@ -23,9 +23,18 @@ public class RaceManager : MonoBehaviour
     {
         podium.Add(entity);
 
-        if (podium.Count == 3)
+        if (entity.tag == "Player" || podium.Count == 3)
         {
-            Debug.LogError("Match won: " + podium[0]);
+            PlayerPlace = 4;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (podium[i].tag == "Player")
+                {
+                    PlayerPlace = i;
+                    break;
+                }
+            }
 
             OnRaceFinish?.Invoke();
         }
