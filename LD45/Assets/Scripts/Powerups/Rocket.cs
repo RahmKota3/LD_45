@@ -63,7 +63,7 @@ public class Rocket : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         
-        rb.velocity = transform.forward * Velocity;
+        rb.velocity = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().velocity + transform.forward * Velocity;
     }
 
     private void FixedUpdate()

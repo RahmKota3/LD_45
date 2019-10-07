@@ -141,7 +141,7 @@ public class PowerupController : MonoBehaviour
 
         GetPowerupInput();
 
-        if (gameObject.tag == "Player")
+        if (gameObject.tag == "Player" && LevelManager.Instance.GetLevelName() != "Hub")
         {
             uiPowerup = GameObject.FindGameObjectWithTag("PowerupDisplay");
             uiPowerup.SetActive(false);
