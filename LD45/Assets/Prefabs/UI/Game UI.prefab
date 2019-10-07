@@ -691,14 +691,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00259f6577f30ca499a75ff861c9cfd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritesAvailable: 0
+  spritesAvailable: 1
   powerupDisplayImg: {fileID: 393161116932688247}
   PowerupSprites:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: b6d28201c19cd7e499dc6dc3f86e4c5c, type: 3}
+  - {fileID: 21300000, guid: b1473381edc64284cbdda3ade7320e77, type: 3}
+  - {fileID: 21300000, guid: e782dc98787d2654c8826aebf162d126, type: 3}
+  - {fileID: 21300000, guid: 44adb4a9ef73b0a468028d8441d03bb2, type: 3}
 --- !u!114 &5419652174781299147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &393161116555824066
 RectTransform:
   m_ObjectHideFlags: 0

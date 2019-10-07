@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
     
     public void PlayHitSound(AudioSource audioSource)
     {
+        Debug.Log("hit");
         int rand = Random.Range(0, 2);
         audioSource.PlayOneShot(hitSounds[rand]);
     }

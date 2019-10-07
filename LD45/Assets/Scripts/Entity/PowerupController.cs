@@ -32,7 +32,6 @@ public class PowerupController : MonoBehaviour
     public void RandomizePowerup()
     {
         currentPowerup = (Powerups)UnityEngine.Random.Range(1, 5);
-        Debug.Log(currentPowerup);
 
         if (gameObject.tag == "Player")
             uiPowerup.SetActive(true);
@@ -164,5 +163,15 @@ public class PowerupController : MonoBehaviour
             else
                 powerupTimers[i] = 0;
         }
+
+#region DEBUG
+        if(Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                RandomizePowerup();
+            }
+        }
+#endregion
     }
 }

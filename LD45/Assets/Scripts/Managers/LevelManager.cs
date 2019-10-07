@@ -22,6 +22,14 @@ public class LevelManager : MonoBehaviour
         return SceneManager.GetActiveScene().name;
     }
 
+    public void GoToNextLevel()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex;
+
+        if(index < SceneManager.sceneCount)
+            SceneManager.LoadScene(index + 1);
+    }
+
     private void Awake()
     {
         if (Instance == null)

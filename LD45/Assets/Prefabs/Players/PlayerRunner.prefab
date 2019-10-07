@@ -797,7 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 1
   rotationSpeed: 60
-  maxSpeedMagnitude: 1
+  maxSpeedMagnitude: 0.4
   maxBackwardsSpeed: 16
   maxClamp: 10
   MaxRbSpeed: 0
