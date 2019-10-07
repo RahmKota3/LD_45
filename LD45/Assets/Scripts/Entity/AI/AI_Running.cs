@@ -19,7 +19,10 @@ public class AI_Running : MonoBehaviour
 
     void GetCheckpoints()
     {
-        checkpointsLeft = AI_Checkpoint_Helper.Instance.Path;
+        foreach (Vector3 v in AI_Checkpoint_Helper.Instance.Path)
+        {
+            checkpointsLeft.Add(v);
+        }
     }
 
     void MatchStart()
@@ -30,6 +33,8 @@ public class AI_Running : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 3;
+
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<EntityStats>();
         powerupController = GetComponent<PowerupController>();
