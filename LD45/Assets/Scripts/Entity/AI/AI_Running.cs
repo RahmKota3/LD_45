@@ -33,8 +33,6 @@ public class AI_Running : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 3;
-
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<EntityStats>();
         powerupController = GetComponent<PowerupController>();
