@@ -24,14 +24,17 @@ public class PowerupController : MonoBehaviour
     float[] powerupTimers = new float[5];
     float powerupDuration = 3;
 
-    public Action<Powerups> UpdatePowerupInfo;
+    public Action<Powerups> OnPowerupCollected;
+
+    AudioSource audioSource;
     
     public void RandomizePowerup()
     {
         currentPowerup = (Powerups)UnityEngine.Random.Range(1, 5);
         Debug.Log(currentPowerup);
 
-        UpdatePowerupInfo?.Invoke(currentPowerup);
+        OnPowerupCollected?.Invoke(currentPowerup);
+        SoundManager.Instance.PlayPickupSound(audioSource);
     }
 
     public void ActivatePowerup()
@@ -42,30 +45,58 @@ public class PowerupController : MonoBehaviour
         switch (currentPowerup)
         {
             case Powerups.Mine:
-                Instantiate(minePrefab, mineLaunchPoint.position, transform.rotation);
-                currentPowerup = Powerups.None;
+                UseMine();
                 break;
             case Powerups.Boost:
-                boostObject.SetActive(true);
-                BoostActive = true;
-                powerupTimers[(int)currentPowerup] = powerupDuration;
+                UseBoost();
                 break;
             case Powerups.Bazooka:
-                GameObject g =Instantiate(rocketPrefab, rocketLaunchPoint.position, transform.rotation);
-
-                if (BoostActive)
-                    g.GetComponent<Rigidbody>().velocity *= 2;
-                
-                currentPowerup = Powerups.None;
+                UseBazooka();
                 break;
             case Powerups.Shield:
-                shieldObject.SetActive(true);
-                ShieldActive = true;
-                powerupTimers[(int)currentPowerup] = powerupDuration;
+                UseShield();
                 break;
         }
 
-        UpdatePowerupInfo?.Invoke(currentPowerup);
+        OnPowerupCollected?.Invoke(currentPowerup);
+    }
+
+    void UseBoost()
+    {
+        boostObject.SetActive(true);
+        BoostActive = true;
+        powerupTimers[(int)currentPowerup] = powerupDuration;
+
+        SoundManager.Instance.PlayBoostSound(audioSource);
+    }
+
+    void UseMine()
+    {
+        Instantiate(minePrefab, mineLaunchPoint.position, transform.rotation);
+        currentPowerup = Powerups.None;
+
+        SoundManager.Instance.PlayPowerupUseSound(audioSource);
+    }
+
+    void UseShield()
+    {
+        shieldObject.SetActive(true);
+        ShieldActive = true;
+        powerupTimers[(int)currentPowerup] = powerupDuration;
+
+        SoundManager.Instance.PlayPowerupUseSound(audioSource);
+    }
+
+    void UseBazooka()
+    {
+        GameObject g = Instantiate(rocketPrefab, rocketLaunchPoint.position, transform.rotation);
+
+        if (BoostActive)
+            g.GetComponent<Rigidbody>().velocity *= 2;
+
+        currentPowerup = Powerups.None;
+
+        SoundManager.Instance.PlayPowerupUseSound(audioSource);
     }
 
     void DisableActivePowerups(Powerups pow)
@@ -89,7 +120,7 @@ public class PowerupController : MonoBehaviour
     {
         if(gameObject.tag != "Player")
         {
-            GetComponent<AI_PowerupUse>().OnPowerupUse += ActivatePowerup;
+            GetComponent<AI_PowerupUse>().UsePowerup += ActivatePowerup;
         }
         else
         {
@@ -99,6 +130,8 @@ public class PowerupController : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         GetPowerupInput();
     }
 

@@ -14,6 +14,8 @@ public class EntityStats : MonoBehaviour
 
     public Action<int> OnLapFinished;
 
+    AudioSource audioSource;
+
     public void NewLap()
     {
         CurrentLap += 1;
@@ -25,12 +27,19 @@ public class EntityStats : MonoBehaviour
     {
         IsStunned = true;
         stunTimer = stunTime;
+
+        SoundManager.Instance.PlayHitSound(audioSource);
     }
 
     public void HardStun(bool stun)
     {
         IsStunned = stun;
         hardStun = stun;
+    }
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()

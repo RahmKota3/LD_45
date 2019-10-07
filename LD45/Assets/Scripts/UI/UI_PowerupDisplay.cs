@@ -24,6 +24,6 @@ public class UI_PowerupDisplay : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PowerupController>().UpdatePowerupInfo += PowerupChanged;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PowerupController>().OnPowerupCollected += PowerupChanged;
     }
 }

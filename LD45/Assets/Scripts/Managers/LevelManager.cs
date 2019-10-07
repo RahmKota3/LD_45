@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    public string GetLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
     private void Awake()
     {
         if (Instance == null)

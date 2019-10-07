@@ -9,22 +9,22 @@ public class StartingCountdown : MonoBehaviour
 
     int roundedTime = 3;
     float time = 3;
-
-    private void Start()
-    {
-        pauseController = GetComponent<PauseMenuController>();
-        pauseController.HardPause(true);
-    }
-
+    
     private void Update()
     {
+        if (LevelManager.Instance.GetLevelName() == "Hub")
+            return;
+
         int temp = roundedTime;
 
         time -= Time.deltaTime;
         roundedTime = Mathf.RoundToInt(time);
 
         if (temp != roundedTime)
+        {
             uiCountdown.UpdateText(roundedTime);
+            SoundManager.Instance.PlayCountdownSound();
+        }
 
         if(roundedTime == 0)
         {

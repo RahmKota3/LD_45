@@ -10,19 +10,6 @@ public class PauseMenuController : MonoBehaviour
 
     bool isPaused = false;
     
-    public void HardPause(bool pause)
-    {
-        Debug.Log(pause);
-        if (isPaused)
-        {
-            player.enabled = false;
-        }
-        else
-        {
-            player.enabled = true;
-        }
-    }
-
     void PauseMenu()
     {
         isPaused = !isPaused;
