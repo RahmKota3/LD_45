@@ -287,8 +287,9 @@ GameObject:
   - component: {fileID: 1722863776}
   - component: {fileID: 1039427279}
   - component: {fileID: 4767525124695046260}
+  - component: {fileID: -1225992031399363243}
   m_Layer: 0
-  m_Name: AI_Runner
+  m_Name: AI_Gocart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,10 +321,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 13
-  m_Acceleration: 8
+  m_Speed: 26
+  m_Acceleration: 12
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 140
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -370,7 +371,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7613519529353032569}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -535,6 +536,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 92672c853b10ce94facce18cb20b180f, type: 3}
   - {fileID: 8300000, guid: c6f8c48995b514949b4d365608b2f9d0, type: 3}
   manualMovmentSounds: {fileID: 8300000, guid: 66685954749cd3e4393c32e912a9ceff, type: 3}
+--- !u!136 &-1225992031399363243
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7613519529353032569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7638304570386932170
 GameObject:
   m_ObjectHideFlags: 0

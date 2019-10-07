@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 1039427279}
   - component: {fileID: 4767525124695046260}
   m_Layer: 0
-  m_Name: AI_Runner
+  m_Name: AI_Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,8 +320,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 13
-  m_Acceleration: 8
+  m_Speed: 19.5
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
