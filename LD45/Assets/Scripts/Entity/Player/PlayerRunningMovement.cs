@@ -95,7 +95,7 @@ public class PlayerRunningMovement : MonoBehaviour
         stats = GetComponent<EntityStats>();
         powerupController = GetComponent<PowerupController>();
 
-        RaceManager.Instance.OnMatchStart += StartRace;
+        RaceManager.Instance.OnRaceStart += StartRace;
 
         MaxRbSpeed = maxSpeedMagnitude * 40;
 

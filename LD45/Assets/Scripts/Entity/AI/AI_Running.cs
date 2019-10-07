@@ -39,7 +39,7 @@ public class AI_Running : MonoBehaviour
 
         GetCheckpoints();
 
-        RaceManager.Instance.OnMatchStart += MatchStart;
+        RaceManager.Instance.OnRaceStart += MatchStart;
     }
     
     private void Update()

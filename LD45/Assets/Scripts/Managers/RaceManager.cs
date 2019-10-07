@@ -14,7 +14,10 @@ public class RaceManager : MonoBehaviour
 
     [HideInInspector] public List<Transform> Checkpoints;
 
-    public Action OnMatchStart;
+    public Action OnRaceStart;
+    public Action OnRaceFinish;
+
+    public int PlayerPlace = 1;
 
     public void FinishedRace(GameObject entity)
     {
@@ -23,7 +26,8 @@ public class RaceManager : MonoBehaviour
         if (podium.Count == 3)
         {
             Debug.LogError("Match won: " + podium[0]);
-            // Todo: On race finished stuff.
+
+            OnRaceFinish?.Invoke();
         }
     }
 
@@ -43,7 +47,7 @@ public class RaceManager : MonoBehaviour
 
     public void StartMatch()
     {
-        OnMatchStart?.Invoke();
+        OnRaceStart?.Invoke();
     }
 
     private void Awake()

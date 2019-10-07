@@ -12,6 +12,7 @@ public class GoalTrigger : MonoBehaviour
             return;
 
         EntityStats e = other.gameObject.GetComponent<EntityStats>();
+        
         if (e.CurrentLap < RaceManager.Instance.NumberOfLaps - 1)
             e.NewLap();
         else
