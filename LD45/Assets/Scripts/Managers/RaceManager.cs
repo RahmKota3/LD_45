@@ -31,7 +31,7 @@ public class RaceManager : MonoBehaviour
             {
                 if (podium[i].tag == "Player")
                 {
-                    PlayerPlace = i;
+                    PlayerPlace = i + 1;
                     break;
                 }
             }
