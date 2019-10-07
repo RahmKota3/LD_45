@@ -25,6 +25,7 @@ public class AI_Running : MonoBehaviour
     void MatchStart()
     {
         agent.isStopped = false;
+        agent.SetDestination(checkpointsLeft[0]);
     }
 
     private void Awake()
@@ -40,13 +41,7 @@ public class AI_Running : MonoBehaviour
 
         RaceManager.Instance.OnMatchStart += MatchStart;
     }
-
-    private void Start()
-    {
-        agent.SetDestination(checkpointsLeft[0]);
-        //agent.isStopped = true;
-    }
-
+    
     private void Update()
     {
         if (stats.IsStunned)

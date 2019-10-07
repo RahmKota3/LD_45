@@ -11,7 +11,7 @@ public class Mine : MonoBehaviour
         if (es == null)
             return;
 
-        es.IsStunned = true;
+        es.Stun();
 
         Destroy(gameObject);
     }

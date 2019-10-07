@@ -6,9 +6,22 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuObject;
 
-    bool isPaused = false;
+    [SerializeField] PlayerRunningMovement player;
 
-    //float defaultFixedDeltaTime = Time.fixedDeltaTime;
+    bool isPaused = false;
+    
+    public void HardPause(bool pause)
+    {
+        Debug.Log(pause);
+        if (isPaused)
+        {
+            player.enabled = false;
+        }
+        else
+        {
+            player.enabled = true;
+        }
+    }
 
     void PauseMenu()
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,11 +23,15 @@ public class PowerupController : MonoBehaviour
     
     float[] powerupTimers = new float[5];
     float powerupDuration = 3;
+
+    public Action<Powerups> UpdatePowerupInfo;
     
     public void RandomizePowerup()
     {
-        currentPowerup = (Powerups)Random.Range(1, 5);
+        currentPowerup = (Powerups)UnityEngine.Random.Range(1, 5);
         Debug.Log(currentPowerup);
+
+        UpdatePowerupInfo?.Invoke(currentPowerup);
     }
 
     public void ActivatePowerup()
@@ -59,6 +64,8 @@ public class PowerupController : MonoBehaviour
                 powerupTimers[(int)currentPowerup] = powerupDuration;
                 break;
         }
+
+        UpdatePowerupInfo?.Invoke(currentPowerup);
     }
 
     void DisableActivePowerups(Powerups pow)

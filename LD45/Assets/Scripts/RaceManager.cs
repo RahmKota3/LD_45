@@ -41,9 +41,8 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void StartMatch()
     {
-        // Todo: Add countdown to start.
         OnMatchStart?.Invoke();
     }
 

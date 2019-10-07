@@ -20,12 +20,22 @@ public class PlayerRunningMovement : MonoBehaviour
     Vector2 movement;
     float runningTime = 0;
 
+    bool raceStarted = false;
+
     Rigidbody rb;
     EntityStats stats;
     PowerupController powerupController;
 
+    void StartRace()
+    {
+        raceStarted = true;
+    }
+
     void CheckInput()
     {
+        if (raceStarted == false)
+            return;
+
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (movement.y != 0)
@@ -84,6 +94,8 @@ public class PlayerRunningMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         stats = GetComponent<EntityStats>();
         powerupController = GetComponent<PowerupController>();
+
+        RaceManager.Instance.OnMatchStart += StartRace;
 
         MaxRbSpeed = maxSpeedMagnitude * 40;
 
